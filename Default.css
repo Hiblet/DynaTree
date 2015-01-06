@@ -1,0 +1,59 @@
+﻿body 
+{
+    margin:0px; /* The whole page body area has a default margin of 10px, so you have to over-ride this */
+}
+
+#divContainer 
+{
+    overflow:hidden;
+    background-color:#EEEEEE;
+    width:800px; 
+}
+
+/* ******************************************* */
+/* An example test style class set for testing */
+/* ******************************************* */
+
+/* Note: Left margin settings for ul class and li class will add to form a single value. */
+
+.ulTestClass
+{
+  list-style-type: none;
+  padding: 0px;
+  margin: 5px;
+}
+
+/* Buttons within the Branch Nodes */
+.ulTestClass input[type=button] 
+{
+  font-size:smaller;
+}
+
+.liTestClass 
+{  
+  margin-left:40px; /* Indentation */  
+}
+
+.btnTestClass
+{
+  margin-right:8px; /* Gap before following text */   
+}
+
+.cbBranchTestClass
+{
+    /* Branch Checkboxes */
+    margin-left:5px; /* Gap before checkbox */
+}
+
+.cbLeafTestClass
+{
+    /* Leaf Checkboxes */
+    margin-left:5px; /* Gap before checkbox */
+}
+
+.anchorTestClass:link { color:red; }
+.anchorTestClass:visited { color:black; }
+.anchorTestClass:hover { color:orange; }
+.anchorTestClass:active { color:yellow; }
+
+
