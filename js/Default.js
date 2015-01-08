@@ -145,7 +145,7 @@ nz.orders.hookupHandlers = function () {
 
 
 nz.orders.btnLeaves_onClick = function () {
-    nz.orders.updateFeedback(nz.dynatree.GetSelectedLeaves("myFirstTree"));
+    nz.orders.updateFeedback(nz.dynatree.GetSelectedLeaves("myFirstTree", false));
 }
 
 nz.orders.btnBranches_onClick = function () {
