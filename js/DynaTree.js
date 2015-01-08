@@ -388,26 +388,27 @@ nz.dynatree.checkboxSingleSelect = function (sTreeId, path, bState) {
 /////////////////
 // GET SELECTED
 
-nz.dynatree.GetSelectedLeaves = function (sTreeId) {
-    return nz.dynatree.getSelected(sTreeId, true, false);
+nz.dynatree.GetSelectedLeaves = function (sTreeId, bIncludePath) {
+    return nz.dynatree.getSelected(sTreeId, true, false, bIncludePath);
 }
 
-nz.dynatree.GetSelectedBranches = function (sTreeId) {
-    return nz.dynatree.getSelected(sTreeId, false, true);
+nz.dynatree.GetSelectedBranches = function (sTreeId, bIncludePath) {
+    return nz.dynatree.getSelected(sTreeId, false, true, bIncludePath);
 }
 
-nz.dynatree.GetSelectedLeavesAndBranches = function (sTreeId) {
-    return nz.dynatree.getSelected(sTreeId, true, true);
+nz.dynatree.GetSelectedLeavesAndBranches = function (sTreeId, bIncludePath) {
+    return nz.dynatree.getSelected(sTreeId, true, true, bIncludePath);
 }
 
 // Retrieve the leaves or branches, currently selected.
 // Returns an array of path values.
-nz.dynatree.getSelected = function (sTreeId, bLeaves, bBranches) {
+nz.dynatree.getSelected = function (sTreeId, bLeaves, bBranches, bIncludePath) {
     var prefix = "nz.dynatree.getSelected() - ";
     nz.dynatree.log(prefix + "Entering");
 
     var bLeaves = (typeof bLeaves === "undefined") ? true : bLeaves; // Default syntax; Leaves defaults true
     var bBranches = (typeof bBranches === "undefined") ? true : bBranches; // Default syntax; Branches defaults true
+    var bIncludePath = (typeof bIncludePath === "undefined") ? true : bIncludePath; // Default syntax; IncludePath defaults true
 
 
     // Get the root of the tree
@@ -432,8 +433,12 @@ nz.dynatree.getSelected = function (sTreeId, bLeaves, bBranches) {
             if ((bBranches && dataType == nz.dynatree.config.sDataNodeTypeBranch) ||
                 (bLeaves && dataType == nz.dynatree.config.sDataNodeTypeLeaf)) {
                 if (inputElement.checked) {
-                    var path = inputElement.getAttribute("data-path");
-                    arrResult.push(path);
+                    if (bIncludePath) {
+                        arrResult.push(inputElement.getAttribute("data-path"));
+                    }
+                    else {
+                        arrResult.push(inputElement.getAttribute("data-key"));
+                    }
                 }
             }
         }
