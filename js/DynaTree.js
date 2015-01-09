@@ -767,9 +767,10 @@ nz.dynatree.LinkifyLeaves = function (sTreeId, sLinkTemplate, sLinkSubstituteKey
 
                 // Insert the substitution text to build the link text
                 var link = sLinkTemplate.replace(sLinkSubstituteKey, liText);
+                var uriLink = encodeURI(link);
 
                 var anchor = document.createElement("a");
-                anchor.setAttribute("href", link);
+                anchor.setAttribute("href", uriLink);
                 anchor.className = styleDefn["anchorClass"] || "";
 
                 // Insert the anchor in the list item with the text node beneath it
