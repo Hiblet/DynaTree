@@ -37,6 +37,8 @@ nz.orders.init = function () {
     var prefix = "nz.orders.init() - ";
     nz.orders.log(prefix + "Entering");
 
+    nz.orders.tempTestStringStuff();
+
     // BUILD A STYLE OBJECT TO DEFINE THE TREE STYLE
     var styleDefn = new Object();
     styleDefn["ulClass"] = "ulTestClass";
@@ -121,7 +123,7 @@ nz.orders.init = function () {
         ///////////////////////////////
         // Turn list items into links
 
-        nz.dynatree.LinkifyLeaves("myFirstTree","http://www.google.com?search=%SUB%", "%SUB%");
+        nz.dynatree.LinkifyLeaves("myFirstTree", "http://www.google.com?search=%SUB%", "%SUB%");
     }
     else {
         nz.orders.error(prefix + "Failed to retrieve object using JQuery selector.");
@@ -184,4 +186,24 @@ nz.orders.getChecked = function (sTreeId) {
     var result = arrResult.join(separator);
     var divFeedback = $("[id*=divFeedback]");
     divFeedback.html(result);
+}
+
+///////////////////////////////////////////////////////
+// Temporary string testing, not part of main project
+
+nz.orders.tempTestStringStuff = function () {
+    var s1 = "ABCDEF-123-456";
+
+    var s1Filtered = fc.utils.filter(s1, "BDF123456789-");
+
+    var s1TruncatedShort = fc.utils.truncate(s1, 2); // "AB"
+    var s1TruncatedLong = fc.utils.truncate(s1, 10); // "ABCDEF-123"
+    var s1TruncatedEllipsisShort = fc.utils.truncate(s1, 2, true);
+    var s1TruncatedEllipsisLong = fc.utils.truncate(s1, 10, true); // "ABCDEF-...";
+
+    var sInsert = "(INSERTED)";
+    var s1Inserted = fc.utils.insertAtIndex(s1, sInsert, 3); // "ABC(INSERTED)DEF-123-456"
+
+    var s1Prepended = fc.utils.insertAtIndex(s1, "~", 0); // "~ABCDEF-123-456"
+    var s1Silly = fc.utils.insertAtIndex(s1, "/", 99); // "ABCDEF-123-456/"
 }
