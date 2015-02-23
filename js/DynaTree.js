@@ -183,7 +183,7 @@ nz.dynatree.processNode = function (key, value, nodeID, sTreeId, depth) {
         li.appendChild(document.createTextNode(key));
 
         // Add a checkbox and set the visibility
-        cb = document.createElement("input");
+        var cb = document.createElement("input");
         cb.type = "checkbox";
         cb.className = styleDefn["branchCheckboxClass"] || "";
         cb.id = nz.dynatree.getId("cb", sTreeId, path);
@@ -231,7 +231,7 @@ nz.dynatree.processNode = function (key, value, nodeID, sTreeId, depth) {
 
 
         // Add a checkbox and set the visibility
-        cb = document.createElement("input");
+        var cb = document.createElement("input");
         cb.type = "checkbox";
         cb.className = styleDefn["leafCheckboxClass"] || "";
         cb.id = nz.dynatree.getId("cb", sTreeId, path);

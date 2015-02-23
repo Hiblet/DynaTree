@@ -163,6 +163,57 @@ fc.utils.countLines = function (sText) {
     return lines.length;
 }
 
+fc.utils.filter = function (sTarget, sValidChars) {
+    var sFiltered = "";
+    for (var i = 0; i < sTarget.length; ++i) {
+        var c = sTarget[i];
+        if (sValidChars.indexOf(c) > -1) {
+            sFiltered += c;
+        }
+    }
+    return sFiltered;
+}
+
+fc.utils.truncate = function (sTarget, nMaxLength, bEllipsis) {
+    bEllipsis = (typeof bEllipsis !== 'undefined') ? bEllipsis : false; // Default syntax; Default to false
+
+    if (nMaxLength > 3) {
+        if (sTarget.length > nMaxLength) {
+            // Longer than maximum
+            if (bEllipsis) {
+                // Truncate with ellipsis
+                return sTarget.substring(0, Math.min(sTarget.length, nMaxLength - 3)) + "...";
+            }
+            else {
+                // Truncate
+                return sTarget.substring(0, nMaxLength);
+            }
+        }
+        else {
+            // Shorter than maximum, string is unchanged
+            return sTarget;
+        }
+    }
+    else {
+        // 3 chars or less, cannot append ellipsis, just truncate string
+        return sTarget.substring(0, nMaxLength);
+    }
+}
+
+fc.utils.insertAtIndex = function (sTarget, sInsert, index) {
+    sInsert = (typeof sInsert === 'undefined') ? "" : sInsert; // default syntax
+    index = (typeof index === 'undefined') ? 0 : index;
+
+    // Sanity
+    if (sTarget.length == 0 || sInsert.length == 0) {
+        return sTarget;
+    }
+
+    //var sBefore = sTarget.substring(0, index);
+    //var sAfter = sTarget.substring(index);
+    return sTarget.substring(0, index) + sInsert + sTarget.substring(index);
+}
+
 ///////////////////////////////////////////////////////////////////////////////
 //
 // TEXTBOX DATA ENTRY
