@@ -57,7 +57,7 @@ nz.orders.init = function () {
         }
         catch (e) {
             var msgError = "Json Re-hydration Failed. ";
-            nz.orders.error(prefix + msgError + e.Message);
+            nz.orders.error(prefix + msgError + e.message);
             return;
         }
 
