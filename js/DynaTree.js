@@ -688,7 +688,7 @@ nz.dynatree.callCallback_onCheckedChanged = function (sTreeId) {
         fnCallback(sTreeId);
     }
     catch (ex) {
-        var msgException = "Failed during callback for onCheckedChanged event with exception: " + ex.Message;
+        var msgException = "Failed during callback for onCheckedChanged event with exception: " + ex.message;
         nz.dynatree.error(prefix + msgException);
     }
 
