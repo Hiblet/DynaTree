@@ -68,6 +68,7 @@ nz.orders.init = function () {
         var bShowLeafCheckboxes = true;
         var bMultiSelect = true;
         var bShowValuesAsTooltips = true;
+        var bLeavesAboveBranches = true;
 
         nz.dynatree.Build(
             jContractTree,              // JS object data
@@ -77,7 +78,8 @@ nz.orders.init = function () {
             bMultiSelect,               // Mode; TRUE implies multiple checks are allowed; FALSE implies checking an item unchecks all other items.
             bShowValuesAsTooltips,      // Mode; TRUE implies leaf values display as tooltips; FALSE implies leaf values are appended to leaf keys separated by " : "
             bShowBranchCheckboxes,      // Flag to indicate preference for showing checkboxes on Branches / folders.
-            bShowLeafCheckboxes);       // Flag to indicate preference for showing checkboxes on Leaves / files.
+            bShowLeafCheckboxes,        // Flag to indicate preference for showing checkboxes on Leaves / files.
+            bLeavesAboveBranches);      // Flag to indicate preference for showing leaves in front of branches (warning: reverses data order);
 
 
 
