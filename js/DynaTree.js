@@ -40,7 +40,7 @@ nz.dynatree.config.sDataNodeTypeRoot = "~";
 // Log Wrapper
 //
 
-nz.dynatree.config.bLog = true;
+nz.dynatree.config.bLog = false;
 
 nz.dynatree.log = function (msg) { if (nz.dynatree.config.bLog) { console.log(msg); } }
 nz.dynatree.warn = function (msg) { if (nz.dynatree.config.bLog) { console.warn(msg); } }
@@ -59,9 +59,7 @@ nz.dynatree.error = function (msg) { if (nz.dynatree.config.bLog) { console.erro
 // Failure results in returning a null object.
 nz.dynatree.Build = function (
     objData, containerID, styleDefn, sTreeId,
-    bMultiSelect, bShowValuesAsTooltips,
-    bShowBranchCheckboxes, bShowLeafCheckboxes,
-    bLeavesAboveBranches) {
+    bMultiSelect, bShowValuesAsTooltips, bShowBranchCheckboxes, bShowLeafCheckboxes) {
     var prefix = "nz.dynatree.build() - ";
     nz.dynatree.log(prefix + "Entering");
 
@@ -104,9 +102,6 @@ nz.dynatree.Build = function (
 
     var bShowLeafCheckboxes = (typeof bShowLeafCheckboxes === "undefined") ? false : bShowLeafCheckboxes; // Default syntax; Default to false
     nz.dynatree[sTreeId]["bShowLeafCheckboxes"] = bShowLeafCheckboxes;
-
-    var bLeavesAboveBranches = (typeof bLeavesAboveBranches === "undefined") ? false : bLeavesAboveBranches; // Default syntax; Default to false
-    nz.dynatree[sTreeId]["bLeavesAboveBranches"] = bLeavesAboveBranches;
 
     nz.dynatree.createTree(objData, containerID, styleDefn, sTreeId);
 
@@ -153,7 +148,6 @@ nz.dynatree.processNode = function (key, value, nodeID, sTreeId, depth) {
     var bShowValuesAsTooltips = nz.dynatree[sTreeId]["bShowValuesAsTooltips"];
     var bShowBranchCheckboxes = nz.dynatree[sTreeId]["bShowBranchCheckboxes"];
     var bShowLeafCheckboxes = nz.dynatree[sTreeId]["bShowLeafCheckboxes"];
-    var bLeavesAboveBranches = nz.dynatree[sTreeId]["bLeavesAboveBranches"];
 
     var node = document.getElementById(nodeID);
     var parent = node.parentNode;
@@ -168,19 +162,7 @@ nz.dynatree.processNode = function (key, value, nodeID, sTreeId, depth) {
     li.setAttribute("data-path", path);
 
     li.id = nz.dynatree.getId("li", sTreeId, path);
-
-    if (bLeavesAboveBranches) {
-        var firstChild = node.firstChild;
-        if (fc.utils.isValidVar(firstChild)) {
-            node.insertBefore(li, firstChild)
-        }
-        else {
-            node.appendChild(li);
-        }
-    }
-    else {
-        node.appendChild(li);
-    }
+    node.appendChild(li);
 
     if (typeof value == "object") {
         nz.dynatree.log("BRANCH NODE (" + depth + "): " + key);
